@@ -10,7 +10,7 @@ async function bodyParser(request) {
         totalData += chunck;
       })
       .on("end", () => {
-        request.body = JSON.parse(totalData)
+        request.body = JSON.parse(totalData);
         resolve();
       });
   });

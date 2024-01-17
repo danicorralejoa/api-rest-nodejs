@@ -5,9 +5,6 @@ module.exports = http.createServer((req, res) => {
   const urlParser = url.parse(req.url, true);
   const apiOptions = require("./controller");
 
-  console.log(urlParser);
-  console.log(req.method);
-
   switch (req.method) {
     case "GET":
       if (urlParser.pathname === "/users") {
@@ -18,6 +15,11 @@ module.exports = http.createServer((req, res) => {
         if (urlParser.pathname === "/users") {
           apiOptions.createUsers(req, res);
           
+        }
+        break;
+      case "PUT":
+        if (urlParser.pathname === "/users" && Object.hasOwn(urlParser.query, 'id')) {
+          apiOptions.updateUsers(req, res);
         }
         break;
     default:
