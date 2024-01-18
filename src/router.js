@@ -22,6 +22,11 @@ module.exports = http.createServer((req, res) => {
           apiOptions.updateUsers(req, res);
         }
         break;
+        case "DELETE":
+          if (urlParser.pathname === "/users" && Object.hasOwn(urlParser.query, 'id')) {
+            apiOptions.deleteUser(req, res);
+          }
+          break;
     default:
       return
   }
